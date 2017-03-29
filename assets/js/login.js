@@ -31,11 +31,25 @@ window.addEventListener('load',function(e){
 
     function correctPassword(var1,var2){
       if(var1 < 6){
-        spanPass.innerHTML = "Contraseña contiene entre 6 y 20 caracteres"
+        spanError.innerHTML = "Contraseña contiene entre 6 y 20 caracteres"
         return false;}
       coders.forEach(function(e){
-        if(e.correo != var2 && e.pass == var1){
-          spanError.innerHTML = "La contraseña no coincide"
+        if(e.correo != var2){
+          // correo.setAttribute('disabled','disabled');
+          // pass.setAttribute('disabled','disabled');
+          // var regOk = document.createElement('button');
+          // regOk.innerHTML = "Sí estoy registrada"
+          // regOk.setAttribute('type',"submit");
+          // regOk.setAttribute('id',"new-coder");
+          // var daddy = ingresa.parentNode;
+          // daddy.appendChild(regOk);
+          // ingresa.innerHTML = "Registrate"
+          // ingresa.addEventListener('click',function(e){
+          //   e.preventDefault();
+          //   window.location = "register.html"
+          // })
+          // spanError.innerHTML = "La contraseña no coincide"
+          window.location = "sinreg.html"
           return false;}
         else if(e.correo == var2 && e.pass != var1){
           spanError.innerHTML = "La contraseña no es correcta"
