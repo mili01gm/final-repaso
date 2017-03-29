@@ -1,19 +1,16 @@
-function Coders(nombre,apellido,correo,pswrd){
-  this.nombre = nombre;
-  this.apellido = apellido;
-  this.correo = correo;
-  this.pass = pswrd;
-}
-
 window.addEventListener('load',function(){
-  var nombre = document.getElementById('name');
-  var apellido = document.getElementById('lastname');
-  var email = document.getElementById('email');
-  var pswrd = document.getElementById('pswrd');
-  var boton = document.getElementById('btn-reg-coder');
+  var nombre = document.getElementById('edit-name');
+  var apellido = document.getElementById('edit-lastname');
+  var correo = document.getElementById('edit-email');
+  var pass = document.getElementById('edit-pswrd');
   var okEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  var soloLetras = /^([a-zñá-ú+\s])*$/;
-  var inputs = document.getElementsByTagName('input');
+
+  var editCoder = JSON.parse(localStorage.getItem("alumna"));
+
+  nombre.value = editCoder.nombre;
+  apellido.value = editCoder.apellido;
+  correo.value = editCoder.correo;
+  pass.value = editCoder.pass;
 
   var onlyLetters = function(e){
     var codeLetter = e.keyCode;
@@ -28,16 +25,14 @@ window.addEventListener('load',function(){
     if(!okEmail.test(this.value)){
       this.nextElementSibling.nextElementSibling.innerHTML = "*Solo correos en formato válido"
       return false;
-    } else if (okEmail.text(this.value)&&this.value.length!=0){
+    } else if (this.value.length!=0){
       this.nextElementSibling.nextElementSibling.innerHTML = ""
       return true;}
   }
 
   nombre.addEventListener('keypress',onlyLetters);
   apellido.addEventListener('keypress',onlyLetters);
-  email.addEventListener('focus',onlyMail);
-
-  var inputs = document.getElementsByTagName('input');
+  correo.addEventListener('focus',onlyMail);
   var validacionLetras = function(){
     if(this.value.trim().length == 0){
       this.value = "";
@@ -64,19 +59,23 @@ window.addEventListener('load',function(){
 
   nombre.onblur = validacionLetras;
   apellido.onblur = validacionLetras;
-  email.onblur = validacionOtros;
-  pswrd.onblur = validacionOtros;
+  correo.onblur = validacionOtros;
+  pass.onblur = validacionOtros;
 
-  boton.addEventListener('click',function(e){
+  var guardar = document.getElementById('guardar');
+  guardar.addEventListener('click',function(e){
     e.preventDefault();
-    if(nombre.value.length!=0 && apellido.value.length!=0 && email.value.length!=0 && pswrd.value.length!=0){
-      var coder = new Coders(nombre.value,apellido.value,email.value,pswrd.value);
-      localStorage.setItem("alumna",JSON.stringify(coder));
-      boton.nextElementSibling.nextElementSibling.innerHTML = ""
+    if(nombre.value.length!=0 && apellido.value.length!=0 && correo.value.length!=0 && pass.value.length!=0){
+      editCoder.nombre = nombre.value;
+      editCoder.apellido = apellido.value;
+      editCoder.correo = correo.value;
+      editCoder.pass = pass.value;
+      localStorage.setItem('alumna',JSON.stringify(editCoder));
       window.location = "../htmls/coders.html"
-    } else {
-      boton.nextElementSibling.nextElementSibling.innerHTML = "*Complete todos los campos"
     }
-  })
+
+
+
+  });
 
 });
