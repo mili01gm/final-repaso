@@ -49,13 +49,13 @@ window.addEventListener('load',function(e){
           //   window.location = "register.html"
           // })
           // spanError.innerHTML = "La contraseña no coincide"
-          correo.setAttribute('disabled',true);
-          pass.setAttribute('disabled',true);
-          var regresar = document.createElement('button'),
-          regresar.innerHTML = "Registrate"
-          ingresa.innerHTML = "Sí estoy registrada"
-          spanError.innerHTML = ""
-          ingresa.parentNode.appendChild(regresar);
+          // correo.setAttribute('disabled',true);
+          // pass.setAttribute('disabled',true);
+          // var regresar = document.createElement('button'),
+          // regresar.innerHTML = "Registrate"
+          // ingresa.innerHTML = "Sí estoy registrada"
+          // spanError.innerHTML = ""
+          // ingresa.parentNode.appendChild(regresar);
           return false;}
         else if(e.correo == var2 && e.pass != var1){
           spanError.innerHTML = "La contraseña no es correcta"
